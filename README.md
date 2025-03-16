@@ -3,7 +3,7 @@
 ![image](https://github.com/user-attachments/assets/dc439e25-e0f0-48ea-939b-7e928fecdc06)
 ## Реализация:
 ### Листинг программы:
-
+``` c++
 #include <iostream>
 #include <chrono>
 #ifdef _WIN32
@@ -75,7 +75,7 @@ int main() {
     
     return 0;
 }
-
+```
 ## Результаты выполнения программы:
 ![image](https://github.com/user-attachments/assets/710958df-cbbb-4e3f-980d-69d00c4e3e2f)
 
