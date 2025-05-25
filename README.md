@@ -29,6 +29,7 @@ long long gcd_extended(long long a, long long b, long long &x, long long &y) {
     return g;
 }
 
+// Получение использования памяти
 long long getMemoryUsage() {
 #ifdef _WIN32
     PROCESS_MEMORY_COUNTERS pmc;
@@ -42,41 +43,50 @@ long long getMemoryUsage() {
 }
 
 int main() {
-    cout << "Введите три натуральных числа: " << endl;
+    cout << "Автор: Мареев-Королев Алексей Сергеевич, группа: ПОВа-024" << endl;
+    cout << "Введите три натуральных числа: ";
     long long a, b, c;
     cin >> a >> b >> c;
-    
-    auto start_time = high_resolution_clock::now(); // Засекаем время после ввода
 
-    long long x, y;
-    long long g = gcd_extended(a, b, x, y);
-    
+    auto start_time = high_resolution_clock::now();
+
+    long long x0, y0;
+    long long g = gcd_extended(a, b, x0, y0);
+
     cout << "Результат: ";
     if (c % g != 0) {
         cout << "Impossible" << endl;
     } else {
-        x *= c / g;
-        y *= c / g;
-        
-        long long k = (x % (b / g) + (b / g)) % (b / g);
-        x += k * (b / g);
-        y -= k * (a / g);
-        
+        // Базовое решение
+        x0 *= c / g;
+        y0 *= c / g;
+
+        // Шаг изменения решений
+        long long dx = b / g;
+        long long dy = a / g;
+
+        // Ищем наименьшее неотрицательное x
+        long long k = (-x0) / dx;
+        if (x0 + k * dx < 0) ++k;
+
+        long long x = x0 + k * dx;
+        long long y = y0 - k * dy;
+
         cout << x << " " << y << endl;
     }
-    
+
     auto end_time = high_resolution_clock::now();
     duration<double> elapsed_time = end_time - start_time;
     cout << "Время выполнения: " << elapsed_time.count() << " сек" << endl;
-    
     cout << "Используемая память: " << getMemoryUsage() << " КБ" << endl;
-    
-    cout << "Автор: Мареев-Королев Алексей Сергеевич, Группа: 09.03.01 ПОВа-024" << endl;
-    
+
+    cout << "Автор: Мареев-Королев Алексей Сергеевич, группа: ПОВа-024" << endl;
     return 0;
 }
+
 ```
 ## Результаты выполнения программы:
-![image](https://github.com/user-attachments/assets/710958df-cbbb-4e3f-980d-69d00c4e3e2f)
+![image](https://github.com/user-attachments/assets/8a3a0fb0-1abc-4dbc-983a-f0bd44b8b294)
+
 
 
